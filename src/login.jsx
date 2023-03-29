@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
+import {Stack, TextField, Button} from '@mui/material';
+
 
 export const Login = () => {
     const navigate = useNavigate();
@@ -11,7 +13,7 @@ export const Login = () => {
     
      const navigateWeather = ()=>{
         navigate("/Tempapp");
-     }
+     };
      const submitForm = (input) => {
         input.preventDefault();
 
@@ -19,28 +21,39 @@ export const Login = () => {
 
         setEntry ([...Entry, newEntry]);
 
-
+        setemail("");
+        setpassword("");
+     };
+     const onClear = ()=>{
         setemail("");
         setpassword("");
 
+     };
+     const buttonSX ={
+        color: "white",
+        background:"black",
+        "&:hover":{
+            border: " 1px solid red",
+            color: "blue",
+            background:"yellow"
+        }
      }
+ 
 
    
     return (
         <>
      <div className="container">
      <form action="">
-        <div>
-            <label htmlFor="email">Email</label><br />
-            <input type="text" value={email} id = "email" onChange={(e) => setemail (e.target.value)} />
-        </div>
-        <div>
-            <label htmlFor="password">Password</label><br />
-            <input type="text" value={password} id = "password" onChange={(e) => setpassword (e.target.value)} />
-        </div>
-        <button onClick={submitForm}>Submit</button>
-        <button id="btn1" >clear</button>
-        <button onClick={navigateWeather}>login</button>
+        <Stack  >
+           < TextField  sx ={{ margin:2}} label ="Email" size="small" type="text" value={email} id = "email" onChange={(e) => setemail (e.target.value)} />
+           <TextField  sx={{margin:2}}  label ="Password" size="small" type="text" value={password} id = "password" onChange={(e) => setpassword (e.target.value)}  />
+        </Stack >
+         <Stack direction='row' spacing={2} >
+         <Button  sx={buttonSX} variant='outlined' color='secondary' onClick={submitForm}>Submit</Button>
+         <Button sx={buttonSX} variant='outlined'  id="btn1" onClick={onClear} >clear</Button>
+         <Button sx={buttonSX} variant='outlined'  onClick={navigateWeather}>login</Button>
+         </Stack>
       </form>
       
      </div>
