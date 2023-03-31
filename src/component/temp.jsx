@@ -1,10 +1,15 @@
 import React,{useEffect, useState} from "react";
 import"./style.css";
 import Jokess from "../jokes/Jokes";
+import { useNavigate } from "react-router-dom";
 
 const Tempapp = () => {
     const [city, setCity] = useState("");
-    const [search, setSearch] = useState("kathmandu")
+    const [search, setSearch] = useState("Kathmandu");
+    const navigate = useNavigate();
+    const  navigatedog = ()=> {
+        navigate ("/Dogs")
+    }
 
     useEffect(() =>{
 
@@ -21,7 +26,7 @@ const Tempapp = () => {
     return(
         <>
         <div className="box">
-            <h1> Search weather condations from all over the world</h1>
+            <h1> Search weather conditions from all over the world</h1>
             <div className="inputData">
                 <input type= "search"  className="inputField" placeholder="Search" onChange={(event) => { setSearch (event.target.value)}} />
 
@@ -50,6 +55,7 @@ const Tempapp = () => {
 
         </div>
         < Jokess/>
+        <button onClick={navigatedog}> dogs</button>
         
         </>
     )
