@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
-import {Stack, TextField, Button} from '@mui/material';
+import {Stack, TextField, Button,ThemeProvider, Box} from '@mui/material';
+import theme from './component/theme';
 
 
 export const Login = () => {
@@ -29,6 +30,7 @@ export const Login = () => {
         setpassword("");
 
      };
+
      const buttonSX ={
         color: "white",
         background:"black",
@@ -43,21 +45,22 @@ export const Login = () => {
    
     return (
         <>
-     <div className="container">
+        <ThemeProvider theme={theme} >
+        <Box className="container" backgroundColor ='#FFFFFF'>
      <form action="">
-        <Stack  >
-           < TextField  sx ={{ margin:2}} label ="Email" size="small" type="text" value={email} id = "email" onChange={(e) => setemail (e.target.value)} />
+        <Stack>
+           < TextField  sx ={{ margin:2}} label ="Email" size="small" type="text" value={email} id = "email" onChange={(e) => setemail (e.target.value)} backgroundColor= '' />
            <TextField  sx={{margin:2}}  label ="Password" size="small" type="text" value={password} id = "password" onChange={(e) => setpassword (e.target.value)}  />
-        </Stack >
+        </Stack>
          <Stack direction='row' spacing={2} >
          <Button  sx={buttonSX} variant='outlined' color='secondary' onClick={submitForm}>Submit</Button>
-         <Button sx={buttonSX} variant='outlined'  id="btn1" onClick={onClear} >clear</Button>
-         <Button sx={buttonSX} variant='outlined'  onClick={navigateWeather}>login</Button>
+         <Button   sx={buttonSX}   variant='outlined'  id="btn1" onClick={onClear} >clear</Button>
+         <Button   sx = {{buttonSX}}  variant='outlined'  onClick={navigateWeather}>login</Button> 
          </Stack>
       </form>
       
-     </div>
-      <div>
+     </Box>
+      <Box>
         {
             Entry.map((curElem) => {
                 return(
@@ -70,7 +73,9 @@ export const Login = () => {
                 )
             })
         }
-      </div>
+      </Box>
+
+        </ThemeProvider>
         </>
     )
 }

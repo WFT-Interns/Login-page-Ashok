@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from "react";
 import"./style.css";
+import Jokess from "../jokes/Jokes";
 
 const Tempapp = () => {
     const [city, setCity] = useState("");
@@ -47,8 +48,8 @@ const Tempapp = () => {
                 
             )}
 
-           
         </div>
+        < Jokess/>
         
         </>
     )
